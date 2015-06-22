@@ -1,0 +1,4 @@
+<use   name="GeneratorInterface/QPythiaInterface"/>
+<library   file="*.cc" name="GeneratorInterfaceQPythiaInterfacePlugins">
+  <flags   EDM_PLUGIN="1"/>
+</library>

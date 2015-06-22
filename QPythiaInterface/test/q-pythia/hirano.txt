@@ -1,0 +1,22 @@
+impact parameter for a given centrality class:
+
+Centrality
+	b=2.0d0    ![fm] 0- 5% 
+	cent='00-05'
+	b=3.2d0    ![fm] 5-10%
+	cent='05-10'
+	b=5.5d0    ![fm]10-20%
+	cent='10-20'
+	b=7.2d0    ![fm]20-30%
+	cent='20-30'
+	b=8.5d0    ![fm]30-40%
+	cent='30-40'
+	b=10.5d0    ![fm]40-50%
+	cent='40-50'
+	b=12.0d0   ![fm]50-60%
+	cent='50-60'
+	b=12.0d0   ![fm]60-70%
+	cent='60-70'
+	b=12.0d0   ![fm]70-80%
+	cent='70-80'
+

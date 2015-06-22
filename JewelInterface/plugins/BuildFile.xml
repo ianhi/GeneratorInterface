@@ -1,0 +1,4 @@
+<use   name="GeneratorInterface/JewelInterface"/>
+<library   file="*.cc" name="GeneratorInterfaceJewelInterfacePlugins">
+  <flags   EDM_PLUGIN="1"/>
+</library>
