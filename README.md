@@ -20,5 +20,7 @@ lxplus Batch Jobs scripts - put anywhere you want
 https://github.com/ianhi/BatchJobs  
 git clone git@github.com:ianhi/BatchJobs.git  
 
-For documentation  on how this was set up as well as setting this up via a fork of cmssw and to   
+For documentation on how this was set up as well as setting this up via a fork of cmssw see
+ https://twiki.cern.ch/twiki/pub/CMS/HiRutgersGroup/HIGeneratorDocumentation.txt 
+Which is linked to here: https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiRutgersGroup#HIGenerator  
 
