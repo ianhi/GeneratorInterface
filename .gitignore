@@ -1,2 +1,6 @@
 *.root
 PbPb2760_00-05.dat
+*.log
+*.hepmc
+__init__.py
+*.pyc
