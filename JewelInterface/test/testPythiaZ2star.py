@@ -1,11 +1,12 @@
 import FWCore.ParameterSet.Config as cms
 import FWCore.ParameterSet.VarParsing as VarParsing
-import time
+import datetime
 
 process = cms.Process("ANA")
 
 options = VarParsing.VarParsing ('standard')
-options.output = 'DEFAULTOUTPUT'+time.strftime("%x")+'.root'
+now = datetime.datetime.now()
+options.output = 'PYTHIA_DEFAULT_'+now.strftime("%Y-%m-%d_%H-%M")+'.root'
 options.maxEvents = 2000
 options.parseArguments()
 
@@ -39,7 +40,7 @@ process.generator = cms.EDFilter("Pythia6GeneratorFilter",
 )
 
 
-process.RandomNumberGeneratorService.generator.initialSeed = 5
+process.RandomNumberGeneratorService.generator.initialSeed = now.microsecond
 
 process.SimpleMemoryCheck = cms.Service('SimpleMemoryCheck',
                                         ignoreTotal=cms.untracked.int32(0),
