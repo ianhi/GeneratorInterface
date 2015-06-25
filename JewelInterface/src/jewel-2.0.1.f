@@ -310,9 +310,11 @@ C	if (iargc().eq.0) then
 	  write(*,*)'No parameter file given, '// 
      &'will run with default settings.'
 	else
-	  call getarg(1,filename)
-	  write(*,*)'Reading parameters from ',filename
-	  open(unit=1,file=filename,status='old',err=110)
+C Ian HI: changed file=filename to file='params.dat'
+C         This allows sed to modify params.dat in the batch script
+          write(*,*)'Parameter file is from params.dat'
+	  open(unit=1,file='params.dat',status='old',err=110)
+C	  open(unit=1,file='/afs/cern.ch/work/i/ihuntisa/WORK/RUTGERS/CMSSW_5_3_20/src/GeneratorInterface/JewelInterface/test/params.dat',status='old',err=110)
 	  do 120 i=1,1000
           read(1, '(A)', iostat=ios) buffer
 	    if(ios.ne.0) goto 130
