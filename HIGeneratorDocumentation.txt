@@ -1,0 +1,120 @@
+Ian Hunt-Isaak June 19, 2015  
+ianhuntisaak@gmail.com  
+ihuntisa@oberlin.edu  - Primary email until May 2017  
+
+Following are the instructions to set up the an environment to run the following generators, QPythia, Jewel, Pyquen, PyquenWide and PythiaZ2*. This is done using slightly modified code from https://github.com/yenjie/HIGenerator by Yen-Jie Lee. There three methods to set this which are detailed below.  Options 1 and 2 leave you with python config files which are slightly differnet than Yen-Jie's in that they allow for the command line arguments output='?' and maxEvents=? with cmsRun.
+
+Methods to set up - presented in order of increasing difficultly:  
+  
+1.  
+Advantage: easiet set up will get you runnign monte carlo generators and plotting analysis quickest.  
+Disadvantage: Does not set up a git repo to which you can push code  
+
+note: You can also fork ianhi/GeneratorInterface.git and ianhi/MonteMacros.git if you would like to be able to push updates to your own github account  
+  
+2.   
+Advantages:   
+	Only one repository  
+	Allows you to push code to your own git repository   
+Disadvantage:  
+	More steps than option 1  
+	Requires greater knowledge of git	  
+   
+
+3. Documentation of how I set up the files for the above two options. This shouldn't be necessary.  
+  
+  
+
+1. ==============================================================================
+cmsrel CMSSW_5_3_20  
+cd CMSSW_5_3_20/src/  
+cmsenv  
+git clone git@github.com:ianhi/GeneratorInterace.git  
+git clone git@github.com:ianhi/MonteMacros.git  
+scram b -j20  
+cd GeneratorInterface/QPythiaInterface/test/  
+wget http://www-fp.usc.es/nestor/PbPb2760_00-05.dat.gz  
+gunzip PbPb2760_00-05.dat.gz  
+  
+
+
+
+2. ===============================================================================
+# First fork the official cmssw repo to your github account https://github.com/cms-sw/cmssw  
+  
+# Now in new area on your lxplus:  
+# NOTE: this will not work if there is anything in the src/ directory
+  
+cmsrel CMSSW_5_3_20    
+cd CMSSW_5_3_20/src/   
+cmsenv    
+git cms-merge-topic -u ianhi:HIGenerator  
+  
+#now set up your own branch so you can modify the code  
+  
+git remote add <remote_name> git@github.com:<your_username>/cmssw.git  #remote name can be whatever you like. You use it to tell git where to pull from  
+git fetch <remote_name>  
+git checkout -b <name_of_your_branch>  
+  
+cd GeneratorInterface/QPythiaInterface/test/  
+wget http://www-fp.usc.es/nestor/PbPb2760_00-05.dat.gz  
+gunzip PbPb2760_00-05.dat.gz  
+  
+cd ../../..  
+scram b -j20  
+  
+#plotting macros  
+git clone git@github.com:ianhi/MonteMacros.git  
+  
+#you should now be able to run the generators using cmsRun test<Generator>.py these files are located in the test/ directory of the generator interfaces  
+#e.g. cmsRun testPyquen.py output='OUTNAME.root' maxEvents=300  
+  
+3. =============================================================================== 
+    
+How to assemble this from YenJie's Github: https://github.com/yenjie/HIGenerator  
+   
+cmsrel CMSSW_5_3_20/ 
+cd CMSSW_5_3_20/src/  
+cmsenv  
+
+#optional setting up branch - you must have forked cmssw for this - part 1  
+	git cms-init  
+	git checkout CMSSW_5_3_20  
+	git remote add <remote_name> git@github.com:<your_github_name>/cmssw.git  
+	git checkout -b <name_of_your_branch>  
+	emacs -nw .gitignore  
+	#add the following:  
+		*.root  
+		PbPb2760_00-05.dat  
+	#Save and exit file  
+#End of part 1 of optional fork  
+  
+git clone git@github.com:yenjie/HIGenerator.git  
+mkdir GeneratorInterface  
+mv HIGenerator/cmssw/* GeneratorInterface/  
+rm GeneratorInterface/QPythiaInterface/test/input  
+mv HIGenerator/q-pythia/input GeneratorInterface/QPythiaInterface/test/.  
+rm HIGenerator -rf  
+cd GeneratorInterface/  
+rm -rf README.md python YajemInterface  
+cd JewelInterface/test/  
+rm testJewel.py  
+cd ../QPythiaInterface/test  
+wget http://www-fp.usc.es/nestor/PbPb2760_00-05.dat.gz  
+gunzip PbPb2760_00-05.dat.gz  
+rm output  
+ln -s ../test/ output #or whereever you would like your output to go to  
+
+#OPTIONAL FORKING - part 2  
+git add .  
+git commit -m "first commit"  
+git push <remote_name> <name_of_your_branch>  
+#end part 2 of optional  
+  
+scram b -j20  
+  
+  
+#Plotting and analysis macros in MonteMacros were derived from the plot macros in https://github.com/yenjie/HIGenerator/genAna/macros/  
+
+
+
