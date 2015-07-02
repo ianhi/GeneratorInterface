@@ -274,9 +274,10 @@ DijetNtupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
    iEvent.getByLabel(jetTag3_,jets);
    jraV.clear();
    
-  current.nref=jets->size();
+   current.nref=jets->size();
   cout <<current.nref<<endl;
-  std::cout<<"before jet loop"<<std::endl;
+  //std::cout<<"before jet loop"<<std::endl;
+  //commented out 30 June 2015 - Ian Hunt-Isaak
   for(unsigned int j = 0 ; j < jets->size(); ++j){
       const reco::Jet& jet = (*jets)[j];
       current.jtpt[j]=jet.pt();
@@ -303,9 +304,10 @@ DijetNtupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
 
       jraV.push_back(jv);
    }
-  std::cout<<"before filling the tree"<<std::endl;
-   t->Fill();
-   std::cout<<"after filling the tree"<<std::endl;
+  //std::cout<<"before filling the tree"<<std::endl;
+  t->Fill();
+  //std::cout<<"after filling the tree"<<std::endl;
+  //commented out couts 30 June 2015 - Ian Hunt-Isaak
   sort(jraV.begin(),jraV.end(),comparePt);
 
    if(jraV.size() > 0){
@@ -331,7 +333,7 @@ DijetNtupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
       dphi3 = deltaPhi(phi3,phi1);
    }
 
-   cout<<"Done with AK3"<<endl;
+   //   cout<<"Done with AK3"<<endl;
 
    iEvent.getByLabel(jetTag5_,jets);
    jraV.clear();
@@ -383,7 +385,6 @@ DijetNtupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
    edm::Handle<GenEventInfoProduct> hEventInfo;
    iEvent.getByLabel(eventInfoTag_,hEventInfo);
    float pthat = hEventInfo->qScale();
-
    float entry[]={pt1,eta1,phi1,
 		  pt2,eta2,phi2,
 		  pt3,eta3,phi3,
