@@ -275,7 +275,7 @@ DijetNtupleProducer::analyze(const edm::Event& iEvent, const edm::EventSetup& iS
    jraV.clear();
    
    current.nref=jets->size();
-  cout <<current.nref<<endl;
+   cout<<"nref: "<<current.nref<<endl<<endl;
   //std::cout<<"before jet loop"<<std::endl;
   //commented out 30 June 2015 - Ian Hunt-Isaak
   for(unsigned int j = 0 ; j < jets->size(); ++j){
