@@ -13,15 +13,15 @@ options.maxEvents = 2000
 
 
 options.register('ptHatLow',
-120,
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.int,
-"Minimum pt-hat")
+                 120,
+                 VarParsing.VarParsing.multiplicity.singleton,
+                 VarParsing.VarParsing.varType.int,
+                 "Minimum pt-hat")
 options.register('ptHatHigh',
-160,
-VarParsing.VarParsing.multiplicity.singleton,
-VarParsing.VarParsing.varType.int,
-"Maximum pt-hat")
+                 160,
+                 VarParsing.VarParsing.multiplicity.singleton,
+                 VarParsing.VarParsing.varType.int,
+                 "Maximum pt-hat")
 
 options.parseArguments()
 

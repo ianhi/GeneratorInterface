@@ -9,8 +9,18 @@ options = VarParsing.VarParsing ('standard')
 now = datetime.datetime.now()
 options.output = 'QPYTHIA_DEFAULT_'+now.strftime("%Y-%m-%d_%H-%M")+'.root'
 options.maxEvents = 2000
+
+options.register('ptHatLow',
+120,
+VarParsing.VarParsing.multiplicity.singleton,
+VarParsing.VarParsing.varType.int,
+"Minimum pt-hat")
+options.register('ptHatHigh',
+160,
+VarParsing.VarParsing.multiplicity.singleton,
+VarParsing.VarParsing.varType.int,
+"Maximum pt-hat")
 options.parseArguments()
-print(options.maxEvents)
 
 process.load("SimGeneral.HepPDTESSource.pythiapdt_cfi")
 process.load("Configuration.StandardSequences.Services_cff")
