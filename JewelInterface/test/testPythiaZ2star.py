@@ -8,6 +8,10 @@ options = VarParsing.VarParsing ('standard')
 now = datetime.datetime.now()
 options.output = 'PYTHIA_DEFAULT_'+now.strftime("%Y-%m-%d_%H-%M")+'.root'
 options.maxEvents = 2000
+
+options.register('ptHatLow',120,VarParsing.VarParsing.multiplicity.singleton,VarParsing.VarParsing.varType.int,"Minimum pt-hat")
+options.register('ptHatHigh',160,VarParsing.VarParsing.multiplicity.singleton,VarParsing.VarParsing.varType.int,"Maximum pt-hat")
+
 options.parseArguments()
 
 
@@ -30,9 +34,10 @@ process.generator = cms.EDFilter("Pythia6GeneratorFilter",
     comEnergy = cms.double(2760.0),
     PythiaParameters = cms.PSet(
         process.pythiaUESettingsBlock,
-        processParameters = cms.vstring('MSEL=1               ! QCD hight pT processes', 
-            'CKIN(3)=80.          ! minimum pt hat for hard interactions', 
-            'CKIN(4)=9990.         ! maximum pt hat for hard interactions'),
+        processParameters = cms.vstring('MSEL=1          ! QCD hight pT processes', 
+                                        'CKIN(3)='+str(options.ptHatLow), 
+                                        'CKIN(4)='+str(options.ptHatHigh)
+                                ),
         # This is a vector of ParameterSet names to be read, in this order
         parameterSets = cms.vstring('pythiaUESettings', 
             'processParameters')
