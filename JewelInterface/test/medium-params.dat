@@ -1,10 +1,6 @@
 # This is the parameter file for the medium model.
 # Let's change the initial temperature:
-<<<<<<< HEAD:JewelInterface/test/medium-params.dat
 TI .4
-=======
-TI .3
->>>>>>> FETCH_HEAD:JewelInterface/test/medium-params.dat
 # and the centrality
 CENTRMIN 0.
 CENTRMAX 10.
