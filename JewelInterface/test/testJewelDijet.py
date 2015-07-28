@@ -11,6 +11,7 @@ now = datetime.datetime.now()
 options.output = 'JEWEL_DEFAULT_'+now.strftime("%Y-%m-%d_%H-%M")+'.root'
 options.maxEvents = 2000
 
+<<<<<<< HEAD
 
 options.register('ptHatLow',
                  120,
@@ -22,6 +23,19 @@ options.register('ptHatHigh',
                  VarParsing.VarParsing.multiplicity.singleton,
                  VarParsing.VarParsing.varType.int,
                  "Maximum pt-hat")
+=======
+options.register('ptHatLow',
+120,
+VarParsing.VarParsing.multiplicity.singleton,
+VarParsing.VarParsing.varType.int,
+"Minimum pt-hat")
+options.register('ptHatHigh',
+160,
+VarParsing.VarParsing.multiplicity.singleton,
+VarParsing.VarParsing.varType.int,
+"Maximum pt-hat")
+
+>>>>>>> FETCH_HEAD
 
 options.parseArguments()
 
@@ -55,16 +69,23 @@ process.generator = cms.EDFilter("JewelGeneratorFilter",
                                      rotateEventPlane = cms.bool(True),
     		                     PythiaParameters = cms.PSet(   
                                         process.pythiaUESettingsBlock,
+<<<<<<< HEAD
                                          processParameters = cms.vstring('MSEL=1               ! QCD hight pT processes',
                                                                         'CKIN(3)='+str(options.ptHatLow), 
                                                                         'CKIN(4)='+str(options.ptHatHigh)
                                                                         # This is a vector of ParameterSet names to be read, in this order  
                                                                     ),   
+=======
+                                        processParameters = cms.vstring('MSEL=1               ! QCD hight pT processes',
+                                                                        'CKIN(3)='+str(options.ptHatLow), 
+                                                                        'CKIN(4)='+str(options.ptHatHigh)
+                                                                        # This is a vector of ParameterSet names to be read, in this order  
+                                                                        ),
+>>>>>>> FETCH_HEAD
                                         parameterSets = cms.vstring('pythiaUESettings', 
                                         'processParameters')
                                      )
                                  )
-
 
 process.RandomNumberGeneratorService.generator.initialSeed = now.microsecond
 
