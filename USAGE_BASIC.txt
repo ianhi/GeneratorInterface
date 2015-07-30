@@ -1,0 +1,18 @@
+Place in CMMSW_5_3_20/src/  
+Call cmsenv
+cd GeneratorInterface/QPythiaInterface/test/  
+wget http://www-fp.usc.es/nestor/PbPb2760_00-05.dat.gz  
+gunzip PbPb2760_00-05.dat.gz  
+cd ../../  
+scram b -j20  
+
+GO TO EITHER QPythiaInterface/test/ or JewelInterface/test/ and call cmsRun on the generator of your choice.  
+Command line options are:  
+output    | output name  (ALL BUT Q-PYTHIA)  
+maxEvents | maximum number of events  
+ptHatLow  | Minimum ptHat value  
+ptHatHigh | Maxmimum pthat value  
+  
+  
+Example command:  
+cmsRun testJewelDijet.py output="output_name" maxEvents=10000 ptHatLow=50 ptHatHigh=80  
